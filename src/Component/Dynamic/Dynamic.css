@@ -1,0 +1,33 @@
+.dynamic-product-detail{
+    display: flex;
+    border: 2px solid red;
+    box-sizing: border-box;
+}
+.dynamic-product-image{
+    width: 30%;
+    border: 2px solid green;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+   
+}
+.dynamic-product-info{
+    width: 70%;
+    border: 2px solid black;
+    text-align: left;
+    padding: 10px;
+}
+.dynamic-add-to-cart-button{
+    background-color:#2ecc71;
+    color: #ecf0f1;
+    font-size: 20px;
+    width: 70%;
+    height: 35px;
+    border: none;
+    margin: 10px;
+    /* padding: 5px; */
+
+}
+.dynamic-add-to-cart-button:hover{
+    background-color: #27ae60;
+}
