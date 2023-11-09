@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import jwt_decode from "jwt-decode";
 import { Circles } from "react-loader-spinner";
 
 function Register() {
@@ -83,69 +82,30 @@ function Register() {
 
       try {
         setIsLoading(true);
-        const response = await axios.post(
-          "http://localhost:5000/register",
+        
+        const response =await axios.post(
+          "https://ecommerce-server-hpa9.onrender.com/register",
           data
         );
-        console.log(response.data);
-        if (response.data.msg !== "registered") {
-          localStorage.setItem("authToken", response.data.token);
-          const decodedToken = decodeToken(response.data.token);
-          console.log(decodedToken);
-          const checkTokenExpiration = () => {
-            console.log("function call")
-            const authToken = localStorage.getItem("authToken");
-            if (authToken) {
-              const decodedToken = decodeToken(authToken);
-              if (isTokenExpired(decodedToken.exp)) {
-                localStorage.removeItem("authToken");
-                alert("Session has expired. Please login again.");
-                navi("/login");
-              }
-            }
-          };
-          checkTokenExpiration()
-          // Call the checkTokenExpiration function every second
-          // setInterval(checkTokenExpiration, 1000);
+        console.log(response.data.msg)
+        alert(response.data.msg)
+        localStorage.setItem("token",response.data.token)
+        navi("/")
+        
+        setData({
+          name: '',
+          email: '',
+          mobile: '',
+          password: '',
+        })
 
-          // Clear the interval if needed (e.g., when navigating away from the page)
-          // clearInterval(tokenCheckInterval);
 
-          if (isTokenExpired(decodedToken.exp)) {
-            // If token is expired, redirect to login
-            localStorage.removeItem("authToken");
-            alert("session expire please login again");
-            navi("/login");
-          } else {
-            // If token is valid, redirect to the dashboard route
-
-            setIsLoading(false);
-            navi("/", { state: { name: data.userName } });
-            alert("Welcome")
-          }
-        } else {
-          setIsLoading(false);
-          alert("User already exists. Please login.");
-        }
       } catch (error) {
         setIsLoading(false);
         alert("server connection problem");
         console.error("Error during registration:", error);
       }
     }
-  };
-
-  const decodeToken = (token) => {
-    // Decode the token (assuming it's a JWT)
-    const decodedToken = jwt_decode(token);
-    return decodedToken;
-  };
-
-  const isTokenExpired = (exp) => {
-    const currentTime = Date.now() / 1000; // Convert to seconds
-    console.log("Current time:", currentTime);
-    console.log("Token expiration time:", exp);
-    return exp < currentTime;
   };
 
   return (

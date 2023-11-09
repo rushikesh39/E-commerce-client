@@ -4,7 +4,7 @@ import "./App.css";
 // import "slick-carousel/slick/slick-theme.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from './Component/Home/Home';
-// import ShoppingCart from './Component/Cart/ShoppingCart';
+import ShoppingCart from './Component/Cart/ShoppingCart';
 import RegisterLogin from './Register&Login';
 import Mobile from './Component/Mobile/Mobile';
 import Computer from './Component/Laptop/Computer';
@@ -24,6 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path='/login' element={<RegisterLogin/>}/>
+          <Route path='/cart' element={<ShoppingCart/>}/>
           <Route path='/mobile' element={<Mobile/>}/>
           <Route path='/mobile/:id' element={<Dynamic/>}/>
           <Route path='/laptop' element={<Computer/>}/>
