@@ -35,11 +35,12 @@ function Home() {
      
        
       <SliderComponent/>
+      <h2>Best Mobile</h2>
+      <BestMobile/>
       <h2>All Category Product</h2>
       <AllCategoryProduct/>
       
-      <h2>Best Mobile</h2>
-      <BestMobile/>
+      
     </div>
   )
 }

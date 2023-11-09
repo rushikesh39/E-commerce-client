@@ -55,7 +55,7 @@ const Login = () => {
         alert(response.data.msg);
         setIsLoading(false);
         localStorage.setItem("token", response.data.token);
-        navi("/cart");
+        navi("/");
 
       } catch (e) {
         setIsLoading(false);

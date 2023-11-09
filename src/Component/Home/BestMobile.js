@@ -1,85 +1,68 @@
-import React from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import { useSelector } from "react-redux";
-import {selectProducts } from "../../Store/productSlice";
-import "./Slider.css"
+import React from 'react'
+import {useSelector } from "react-redux";
+import { selectProducts } from "../../Store/productSlice";
+import "./Product.css"
 
-function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: "block", background: "black",zIndex:"1" }}
-      onClick={onClick}
-    />
-  );
-}
-function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: "flex", justifyContent:"center",alignContents:"center", background: "black",zIndex:"1" }}
-      onClick={onClick}
-    />
-  );
-}
 function BestMobile() {
-  
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 300,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    autoplay: true,        
-    autoplaySpeed: 3000,
-    pauseOnHover: true,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />
-
-  };
-const product=useSelector(selectProducts)
+  const product  = useSelector(selectProducts);
+  console.log("all category product", product);
+  const products=product.filter(item=>item.product_category_tree[0]==="mobile")
 
 
-const mobiles=product.filter(item=>item.product_category_tree[0].includes("mobile"))
-console.log("best mobile",mobiles)
 
-const randomObject=[];
-const useIndexes=new Set();
 
-while(randomObject.length<6){
-  
-  const randomIndex=Math.floor(Math.random()*mobiles.length)
-  if(!useIndexes.has(randomIndex)){
-    useIndexes.add(randomIndex);
-    randomObject.push(mobiles[randomIndex]);
-    console.log("random object",randomObject)
+// Your array of objects
+const myArray =products;
+
+// Function to get an array of 20 different random objects
+function getRandomObjects(arr, count) {
+  const randomObjects = [];
+  const totalObjects = arr.length;
+
+  // Make sure count is not greater than the total number of objects
+  count = Math.min(count, totalObjects);
+
+  while (randomObjects.length < count) {
+    const randomIndex = Math.floor(Math.random() * totalObjects);
+    const randomObject = arr[randomIndex];
+
+    // Check if the object is not already in the result array
+    if (!randomObjects.includes(randomObject)) {
+      randomObjects.push(randomObject);
+    }
   }
+
+  return randomObjects;
 }
-const random = mobiles[Math.floor(Math.random() * mobiles.length)];
-  console.log(random);
 
+// Get an array of 20 different random objects from your array
+const randomObjects = getRandomObjects(myArray, 5);
 
-
+console.log(randomObjects);
 
   return (
-    <div className='best-mobile-container'>
-      <div className="best-mobile-slider-container">
+    <>
+    <div className="mobile-container">
         
-      <Slider {...settings}>
-      {randomObject &&randomObject.map((item,index)=>(
-        <div key={index} className='best-mobile-slide'>
-        <img className="best-mobile-slide-image" src={item.image} alt="Slide img" />
+        {randomObjects &&
+          randomObjects.map((product, index) => (
+            <div key={index} className="product">
+              <div className="product-img">
+                <img src={product.image[0]} alt="product" />
+              </div>
+              <div className="product-info">
+              <p className="product-title "> {product.product_name}</p>
+              <p>M.R.P.: ₹ <span className="retail-price">{product.retail_price}</span><span className="discount"> off { (((product.retail_price - product.discounted_price) /product.retail_price) * 100).toFixed(0) }%</span></p>
+              <p>Sale Price: ₹ {product.discounted_price}</p>
+              <button className="add-to-cart-button">Add to Cart</button>
+              </div>
+              
+            </div>
+       
+          ))}
       </div>
-      ))}
-        
-      </Slider>
-    </div>
-    </div>
-  );
+    </>
+  )
 }
 
 export default BestMobile
