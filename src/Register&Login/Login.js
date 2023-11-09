@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navi=useNavigate()
+  console.log(navi)
   const [isLoading, setIsLoading] = useState(false);
 
   const [Data, setData] = useState({
