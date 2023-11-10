@@ -62,7 +62,7 @@ const Mobile = () => {
         {products &&
           products.map((product, index) => (
             <div key={index} className="product">
-              <Link to={`/mobile/${product._id}`}>
+              <Link to={`/${product._id}`}>
                 <div className="product-img">
                   <img src={product.image} alt="product" />
                 </div>

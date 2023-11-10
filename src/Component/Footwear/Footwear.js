@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts, selectProducts } from "../../Store/productSlice";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import "../Mobile/Mobile.css";
 
 const Footwear = () => {
@@ -35,6 +36,7 @@ const Footwear = () => {
       {products &&
         products.map((product, index) => (
           <div key={index} className="product">
+           <Link to={`/${product._id}`}>
             <div className="product-img">
               <img src={product.image[0]} alt="product" />
             </div>
@@ -44,6 +46,7 @@ const Footwear = () => {
             <p>Sale Price: ₹ {product.discounted_price}</p>
             <button className="add-to-cart-button">Add to Cart</button>
             </div>
+            </Link>
             
           </div>
      

@@ -1,19 +1,24 @@
 .dynamic-product-detail{
     display: flex;
-    border: 2px solid red;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
+    /* border: 2px solid black; */
 }
 .dynamic-product-image{
-    width: 30%;
-    border: 2px solid green;
+   
+    width: 35%;
+    height: 50vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-content: space-between;
    
+}
+.dynamic-product-image img{
+   height: 100%;
+    /* height: 90%; */
 }
 .dynamic-product-info{
     width: 70%;
-    border: 2px solid black;
     text-align: left;
     padding: 10px;
 }
@@ -26,8 +31,16 @@
     border: none;
     margin: 10px;
     /* padding: 5px; */
+    cursor: pointer;
 
 }
 .dynamic-add-to-cart-button:hover{
     background-color: #27ae60;
+}
+.dynamic_discount{
+    font-size: 28px;
+}
+.dynamic-product-description{
+    padding: 10px;
+    padding-left: 50px;
 }

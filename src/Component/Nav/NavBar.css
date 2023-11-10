@@ -34,6 +34,7 @@
   }
   .nav-links{
     display: flex;
+    padding-right: 10px;
     position: relative;
   }
   .nav-links a {

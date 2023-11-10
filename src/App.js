@@ -14,6 +14,8 @@ import Watches from './Component/Watches/Watches';
 import Footwear from './Component/Footwear/Footwear';
 import Navbar from './Component/Nav/NavBar';
 import Dynamic from './Component/Dynamic/Dynamic';
+import Footer from './Component/Footer/Footer';
+import Search from './Component/SearchResult/SearchResult';
 
 function App() {
   return (
@@ -26,13 +28,15 @@ function App() {
           <Route path='/login' element={<RegisterLogin/>}/>
           <Route path='/cart' element={<ShoppingCart/>}/>
           <Route path='/mobile' element={<Mobile/>}/>
-          <Route path='/mobile/:id' element={<Dynamic/>}/>
+          <Route path='/:id' element={<Dynamic/>}/>
           <Route path='/laptop' element={<Computer/>}/>
           <Route path='/jwelary' element={<Jwelary/>}/>
           <Route path='/fashion' element={<Fashion/>}/>
           <Route path='/watches' element={<Watches/>}/>
           <Route path='/footwear' element={<Footwear/>}/> 
+          <Route path='/search' element={<Search/>}/>
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </div>
   );
