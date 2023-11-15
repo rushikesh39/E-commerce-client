@@ -6,7 +6,7 @@ import jwtDecode from "jwt-decode";
 import "./Cart.css";
 import CartProduct from "./CartProduct";
 import { addToCart } from "../../Store/cartSlice";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 function ShoppingCart() {
   const dispatch=useDispatch()
@@ -49,7 +49,7 @@ function ShoppingCart() {
 
 
 
-  const products = useSelector((state) => state.cartProduct.cartItems);
+  // const products = useSelector((state) => state.cartProduct.cartItems);
 
 
   useEffect(() => {
@@ -68,10 +68,7 @@ function ShoppingCart() {
           };
       
           fetchProducts();
-
-        
-   
-  }, [email,token,dispatch,products]);
+  }, [ dispatch, token]);
   return (
     <div>
      <CartProduct/>
