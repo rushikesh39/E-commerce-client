@@ -70,4 +70,6 @@
     font-size: large;
 
   }
- 
+ .mobile-container h2{
+  width: 100%;
+ }

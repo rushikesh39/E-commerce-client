@@ -3,8 +3,10 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { selectProducts } from "../../Store/productSlice";
-import { addToCartProduct } from '../../Store/cartSlice';
+import { addToCart } from '../../Store/cartSlice';
 import "./Dynamic.css"
+import jwtDecode from "jwt-decode";
+// import axios from "axios";
 
 
 function Dynamic() {
@@ -14,22 +16,32 @@ function Dynamic() {
   console.log("products ",products)
   const product=products.find(item=>item._id===id)
   console.log("final product",product)
-
   const dispatch=useDispatch()
+
+
+
+  const token = localStorage.getItem("token");
+  const decodedToken = jwtDecode(token);
+  const email = decodedToken.email;
+  const data = useSelector((state) => state.cartProduct.cartItems);
+  console.log("cart Item data", data);
   
-  const addToCart=()=>{
-    console.log("product added in cart")
-      dispatch(addToCartProduct(product)); 
-   
+  
+  const addToCartProduct=()=>{
+    if(email){
+      dispatch(addToCart(product)); 
+    }
+      
   }
 
-  return (
+  return product && (
+   
     <div className='dynamic'>
       <h2>Product Details</h2>
       <div className="dynamic-product-detail">
       <div className="dynamic-product-image">
         { Array.isArray(product.image) ? <img  src={product.image[0]} alt={product.name}/>:<img className='dynamic-img' src={product.image} alt={product.name} />}
-        <button onClick={addToCart} className="dynamic-add-to-cart-button">Add to Cart</button>
+        <button onClick={addToCartProduct} className="dynamic-add-to-cart-button">Add to Cart</button>
       </div>
       <div className="dynamic-product-info">
         <h3 className="dynamic-product-name">{product.product_name}</h3>

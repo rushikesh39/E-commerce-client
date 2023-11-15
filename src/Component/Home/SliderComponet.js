@@ -6,26 +6,48 @@ import 'slick-carousel/slick/slick-theme.css';
 import './Slider.css'; // Optional: Add your custom styles
 
 function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
+  const { className, onClick } = props;
   return (
     <div
       className={className}
-      style={{ ...style, display: "block", background: "black",zIndex:"1" }}
+      style={{  margin:0,
+        padding:0,
+        height: "50px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "black",
+        zIndex: "1",
+        cursor: "pointer",  }}
       onClick={onClick}
     />
   );
 }
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
-  
+
   return (
     <div
       className={className}
-      style={{ ...style, display: "flex", justifyContent:"center",alignContents:"center", background: "black",zIndex:"1" }}
+      style={{
+        ...style,
+        margin:0,
+        padding:0,
+        height: "50px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "black",
+        zIndex: "1",
+        cursor: "pointer", 
+      }}
       onClick={onClick}
-    />
+    >
+     
+    </div>
   );
 }
+
 const SliderComponent = () => {
 
   const settings = {
@@ -43,20 +65,20 @@ const SliderComponent = () => {
   };
 
   return (
-    <div className='container'>
+    <div className=''>
       <div className="slider-container">
       <Slider {...settings}>
         <div>
-          <img className="slide-image" src="https://rukminim1.flixcart.com/fk-p-flap/1600/270/image/ee78de50f9dbe993.jpg?q=20" alt="Slide 1" />
+          <img className="slide-image" src="https://rukminim1.flixcart.com/fk-p-flap/1600/270/image/42e1272ed0854e8e.jpeg?q=20" alt="Slide 1" />
         </div>
         <div>
-          <img className="slide-image" src="https://rukminim1.flixcart.com/fk-p-flap/1600/270/image/2f1b3957c095a754.jpg?q=20" alt="Slide 2" />
+          <img className="slide-image" src="https://rukminim1.flixcart.com/fk-p-flap/1600/270/image/fdfc83e8428467d2.jpg?q=20" alt="Slide 2" />
         </div>
         <div>
-          <img className="slide-image" src="https://rukminim1.flixcart.com/fk-p-flap/1600/270/image/5df65ad101e18dbf.jpg?q=20" alt="Slide 3" />
+          <img className="slide-image" src="https://rukminim1.flixcart.com/fk-p-flap/1600/270/image/beff801f5425a797.jpg?q=20" alt="Slide 3" />
         </div>
         <div>
-          <img className="slide-image" src="https://rukminim1.flixcart.com/fk-p-flap/1600/270/image/10afacd24f63e5a4.jpg?q=20" alt="Slide 4" />
+          <img className="slide-image" src="https://rukminim1.flixcart.com/fk-p-flap/1600/270/image/e9c37c2cf2570f1a.jpg?q=20" alt="Slide 4" />
         </div>
         {/* Add more slides as needed */}
       </Slider>

@@ -123,6 +123,7 @@
   display: block;
 }
 #menu ul li{
+  z-index: 2;
   float: left;
   position: relative;
   margin: 0;

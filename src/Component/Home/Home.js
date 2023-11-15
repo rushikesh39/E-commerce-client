@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react'
-import SliderComponent from './SliderComponet'
-// import Product from './AllCategoryProduct'
-// import DealofDay from './DealofDay'
 import BestMobile from './BestMobile'
 import axios from 'axios'
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts, selectProducts } from "../../Store/productSlice";
 import AllCategoryProduct from './AllCategoryProduct'
+import SliderComponent from './SliderComponet';
 
 
 function Home() {

@@ -43,16 +43,16 @@ const Navbar = () => {
                 <Link to="/mobile">Mobile</Link>
                 <ul>
                   <li>
-                    <Link>Apple</Link>
+                    <Link to='/mobile/apple'>Apple</Link>
                   </li>
                   <li>
-                    <Link>Oppo</Link>
+                    <Link to={'/mobile/oppo'}>Oppo</Link>
                   </li>
                   <li>
-                    <Link>Vivo</Link>
+                    <Link to={'/mobile/vivo'}>Vivo</Link>
                   </li>
                   <li>
-                    <Link>OnePlus</Link>
+                    <Link to={'mobile/oneplus'}>OnePlus</Link>
                   </li>
                 </ul>
               </li>
@@ -60,16 +60,13 @@ const Navbar = () => {
                 <Link to="/laptop">Laptop</Link>
                 <ul>
                   <li>
-                    <Link>Apple</Link>
+                    <Link to={'/laptop/dell'}>Dell</Link>
                   </li>
                   <li>
-                    <Link>Dell</Link>
+                    <Link to={'/laptop/asus'}>Asus</Link>
                   </li>
                   <li>
-                    <Link>Asus</Link>
-                  </li>
-                  <li>
-                    <Link>Lenova</Link>
+                    <Link to={'/laptop/lenovo'}>Lenovo</Link>
                   </li>
                 </ul>
               </li>
@@ -77,11 +74,11 @@ const Navbar = () => {
                 <Link to="/fashion">Fashion</Link>
                 <ul>
                   <li>
-                    <Link>Men</Link>
+                    <Link to={'/fashion/Men'}>Men</Link>
                   </li>
 
                   <li>
-                    <Link>Women</Link>
+                    <Link to={'/fashion/Women'}>Women</Link>
                   </li>
                 </ul>
               </li>
@@ -92,16 +89,25 @@ const Navbar = () => {
                 <Link to="/footwear">Footwear</Link>
                 <ul>
                   <li>
-                    <Link>Men</Link>
+                    <Link to={'/footwear/Men'}>Men</Link>
                   </li>
 
                   <li>
-                    <Link>Women</Link>
+                    <Link to={'/footwear/Women'}>Women</Link>
                   </li>
                 </ul>
               </li>
               <li>
                 <Link to="watches">Watches</Link>
+                <ul>
+                  <li>
+                    <Link to={'/watches/Men'}>Men</Link>
+                  </li>
+
+                  <li>
+                    <Link to={'/watches/Women'}>Women</Link>
+                  </li>
+                </ul>
               </li>
             </ul>
           </div>

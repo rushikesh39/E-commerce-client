@@ -1,66 +1,51 @@
-// src/features/product/productSlice.js
-import { createSlice } from '@reduxjs/toolkit';
+// slices/cartSlice.js
+import { createSlice } from "@reduxjs/toolkit";
 
-const cartProductSlice = createSlice({
-  name: 'cartProduct',
+const cartSlice = createSlice({
+  name: "cart",
   initialState: {
-    cartProducts: [],
+    cartItems: [],
   },
   reducers: {
-    addToCartProduct: (state, action) => {
-      console.log('Payload received:', action.payload);
-      const existingProduct = state.cartProducts.find(
-        (product) => product._id === action.payload._id
-      );
-
-      if (existingProduct) {
-        // If the product already exists in the cart, increment its quantity
-        existingProduct.quantity += 1;
-      } else {
-        // If the product is not in the cart, add it with a quantity of 1
-        state.cartProducts.push({ ...action.payload, quantity: 1 });
-      }
-
-      console.log('Updated cartProducts:', [...state.cartProducts]);
-    },
-
-    removeFromCart: (state, action) => {
-      const productIdToRemove = action.payload;
-      state.cartProducts = state.cartProducts.filter(
-        (product) => product._id !== productIdToRemove
-      );
-      console.log('Updated cartProducts after removal:', [...state.cartProducts]);
-    },
-
+    addToCart: (state, action) => {
+        console.log("cart item",state.cartItems)
+        const product = action.payload;
+        console.log("product to add cart ",product)
+        const existingItem = state.cartItems.find((item) => item._id === product._id);
+        console.log("existing item",existingItem)
+        if (existingItem) {
+          // If the item already exists, update its quantity
+          existingItem.quantity += 1;
+        } else {
+          // If the item doesn't exist, add it to the cart with quantity 1
+          state.cartItems.push({ ...action.payload, quantity: 1 });
+        }
+      },
     incrementQuantity: (state, action) => {
-      const productIdToIncrement = action.payload;
-      const productToIncrement = state.cartProducts.find(
-        (product) => product._id === productIdToIncrement
-      );
+      const { productId } = action.payload;
+      const item = state.cartItems.find((item) => item._id === productId);
 
-      if (productToIncrement) {
-        productToIncrement.quantity += 1;
+      if (item) {
+        item.quantity += 1;
       }
     },
-
     decrementQuantity: (state, action) => {
-      const productIdToDecrement = action.payload;
-      const productToDecrement = state.cartProducts.find(
-        (product) => product._id === productIdToDecrement
-      );
+      const { productId } = action.payload;
+      const item = state.cartItems.find((item) => item._id === productId);
 
-      if (productToDecrement && productToDecrement.quantity > 1) {
-        productToDecrement.quantity -= 1;
+      if (item && item.quantity > 1) {
+        item.quantity -= 1;
       }
+    },
+    removeProduct: (state, action) => {
+      const { productId } = action.payload;
+      state.cartItems = state.cartItems.filter(
+        (item) => item._id !== productId
+      );
     },
   },
 });
 
-export const {
-  addToCartProduct,
-  removeFromCart,
-  incrementQuantity,
-  decrementQuantity,
-} = cartProductSlice.actions;
-export const selectCartProducts = (state) => state.cartProduct.cartProducts;
-export default cartProductSlice.reducer;
+export const { addToCart, incrementQuantity, decrementQuantity, removeProduct } =
+  cartSlice.actions;
+export default cartSlice.reducer;

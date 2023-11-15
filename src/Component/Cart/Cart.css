@@ -13,11 +13,14 @@
     justify-content: space-between;
     text-align: left;
     flex-wrap: wrap;
-    background-color:#ecf0f1;
+    background-color:#95a5a6;
     padding: 10px;
 }
+.cart-container h3{
+    color: #ecf0f1;
+}
 .cart-product{
-    border: 2px solid #bdc3c7;
+    border: 2px solid #95a5a6;
     width: 100%;
     height: 220px;
     display: flex;
@@ -32,11 +35,9 @@
     padding-left: 20px;
     background-color: white;
 }
-.cart-details{
-    /* border: 2px solid red; */
-}
+
 .cart-img{
-    /* border: 2px solid green; */
+    border: 2px solid green;
     width: 50%;
     display: flex;
     margin: 5px;
@@ -44,7 +45,8 @@
    
 }
 .cart-img img{
-    max-height: 100%;
+    max-width: 80%;
+    max-height: 80%;
    
     margin: auto;
 }
@@ -68,17 +70,77 @@
   }
   
   .quantity-btn {
-    background-color: #3498db;
-    color: #fff;
-    font-size: 16px;
+    /* padding: 10px; */
+    width: 50px;
+    height: 30px;
     border: none;
-    padding: 10px;
+    font-size: large;
+    color: #fff;
     cursor: pointer;
   }
   
   .quantity-value {
     font-size: 18px;
     margin: 0 10px;
+  }
+  #decrement{
+    background-color: #c0392b;
+  }
+  #decrement:hover{
+    background-color: #e74c3c;
+  }
+  #increment{
+    background-color: #2ecc71;
+  }
+  #increment:hover{
+    background-color:#27ae60;
+  }
+  
+  .empty{
+    width: 100%;
+    text-align: center;
+    font-size: large;
+    color: #ecf0f1;
+  }
+  .price-details {
+    background-color:#3498db;
+    color: #ecf0f1;
+    border: 1px solid #e1e1e1;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .price-details h2 {
+    font-size: 32px;
+    /* color: #333; */
+    margin-bottom: 20px;
+  }
+  
+  .price-details p {
+    font-size: 18px;
+    /* color: #555; */
+    margin: 8px 0;
+  }
+  
+  .price-details button {
+    background-color: #ff5722;
+    color: #fff;
+    padding: 15px 70px;
+    margin-top: 50px;
+    font-size: 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .price-details button:hover {
+    background-color: #e64a19;
   }
   
   

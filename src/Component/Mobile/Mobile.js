@@ -3,40 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { setProducts, selectProducts } from "../../Store/productSlice";
 import axios from "axios";
 import "./Mobile.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const Mobile = () => {
+  const { category} = useParams();
+  console.log("product category",category)
   const dispatch = useDispatch();
   const product = useSelector(selectProducts);
   const products = product.filter(
     (item) => item.product_category_tree[0] === "mobile"
   );
   console.log("mobiles", products);
-  const apple = products.filter((item) =>
-    item.product_name.toLowerCase().includes("apple")
+  const categoryProduct = products.filter((item) =>
+    item.product_name.toLowerCase().includes(category)
   );
-  console.log("apple Product", apple);
-  const oppo = products.filter((item) =>
-    item.product_name.toLowerCase().includes("oppo")
-  );
-  console.log("Oppo Product", oppo);
-  const vivo = products.filter((item) =>
-    item.product_name.toLowerCase().includes("vivo")
-  );
-  console.log("vivo Product", vivo);
-  const oneplus = products.filter((item) =>
-    item.product_name.toLowerCase().includes("oneplus")
-  );
-  console.log("onePlus Product", oneplus);
-  const redmi = products.filter((item) =>
-    item.product_name.toLowerCase().includes("redmi")
-  );
-  console.log("redmi Product", redmi);
-  const samsung = products.filter((item) =>
-    item.product_name.toLowerCase().includes("samsung")
-  );
-  console.log("samsung Product", samsung);
-
+ 
   useEffect(() => {
     if (products.length <20) {
       const fetchProducts = async () => {
@@ -57,6 +38,39 @@ const Mobile = () => {
 
   return (
     <div>
+      <div className="mobile-container">
+      {category && <h2>{category} products</h2>}
+        {categoryProduct &&
+          categoryProduct.map((product, index) => (
+            <div key={index} className="product">
+            
+              <Link to={`/${product._id}`}>
+                <div className="product-img">
+                  <img src={product.image} alt="product" />
+                </div>
+                <div className="product-info">
+                  <p className="product-title "> {product.product_name}</p>
+                  <p>
+                    M.R.P.: ₹{" "}
+                    <span className="retail-price">{product.retail_price}</span>{" "}
+                    <span className="discount">
+                      {" "}
+                      off{" "}
+                      {(
+                        ((product.retail_price - product.discounted_price) /
+                          product.retail_price) *
+                        100
+                      ).toFixed(0)}
+                      %
+                    </span>
+                  </p>
+                  <p>Sale Price: ₹ {product.discounted_price}</p>
+                  <button className="add-to-cart-button">Add to Cart</button>
+                </div>
+              </Link>
+            </div>
+          ))}
+      </div>
       <h1>Product List</h1>
       <div className="mobile-container">
         {products &&

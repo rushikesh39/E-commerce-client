@@ -28,12 +28,17 @@ function App() {
           <Route path='/login' element={<RegisterLogin/>}/>
           <Route path='/cart' element={<ShoppingCart/>}/>
           <Route path='/mobile' element={<Mobile/>}/>
+          <Route path='/mobile/:category' element={<Mobile/>}/>
           <Route path='/:id' element={<Dynamic/>}/>
           <Route path='/laptop' element={<Computer/>}/>
+          <Route path='/laptop/:category' element={<Computer/>}/>
           <Route path='/jwelary' element={<Jwelary/>}/>
           <Route path='/fashion' element={<Fashion/>}/>
+          <Route path='/fashion/:category' element={<Fashion/>}/>
           <Route path='/watches' element={<Watches/>}/>
-          <Route path='/footwear' element={<Footwear/>}/> 
+          <Route path='/watches/:category' element={<Watches/>}/>
+          <Route path='/footwear' element={<Footwear/>}/>
+          <Route path='/footwear/:category' element={<Footwear/>}/> 
           <Route path='/search' element={<Search/>}/>
         </Routes>
         <Footer/>
