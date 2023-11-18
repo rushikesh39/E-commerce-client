@@ -1,5 +1,5 @@
 // Navbar.js
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
 // import logo from "./logo.png";
@@ -9,15 +9,34 @@ import { useDispatch } from "react-redux";
 import { setSearchProducts } from "../../Store/searchProduct";
 import axios from "axios";
 import { setProducts } from "../../Store/productSlice";
-
+import { useSelector} from "react-redux";
+import jwtDecode from "jwt-decode";
 
 const Navbar = () => {
+  const token = localStorage.getItem("token");
+  const decodedToken = token ? jwtDecode(token) : null;
+  const [userName, setUserName] = useState(decodedToken ? decodedToken.userName : null);
+
+  useEffect(() => {
+    if (token && !userName) {
+      try {
+        setUserName(decodedToken.userName);
+      } catch (error) {
+        console.error('Error decoding token:', error);
+      }
+    }
+  }, [token, userName, decodedToken]);
+
+
+  const products = useSelector((state) => state.cartProduct.cartItems);
+  console.log("cart count in nav", products.length);
+
   const dispatch=useDispatch()
   const [searchInput, setSearchInput] = useState('');
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/product/search', {
+      const response = await axios.get('https://ecommerce-server-hpa9.onrender.com/product/search', {
       params: { product_name: searchInput }
     });
       dispatch(setSearchProducts(response.data.products));
@@ -27,6 +46,16 @@ const Navbar = () => {
     }
     setSearchInput("")
   };
+
+
+const logOut=()=>{
+  console.log("fuction call",localStorage)
+  localStorage.removeItem("token");
+  setUserName(null);
+}
+
+
+
   return (
     <div>
       <nav className="navbar">
@@ -120,9 +149,15 @@ const Navbar = () => {
             </div>
            
             <Link to="/login">
-              <button>Login</button>
+              {userName?<span>{userName}</span>:<button>Login</button>}
+              
             </Link>
-            <Link to="/cart"> <FontAwesomeIcon icon={faShoppingCart} size="lg" /></Link>
+            <Link onClick={logOut}>
+            <button >LogOut</button>
+            </Link>
+            <Link to="/cart"> 
+            <div className="cart-icon"><FontAwesomeIcon icon={faShoppingCart} size="lg" />{products.length !== 0 && <div className="cart-count">{products.length}</div>}</div>
+            </Link>
             
           </div>
           

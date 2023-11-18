@@ -84,7 +84,7 @@ function Register() {
         setIsLoading(true);
         
         const response =await axios.post(
-          "https://ecommerce-server-hpa9.onrender.com/register",
+          "http://localhost:5000https://ecommerce-server-hpa9.onrender.com/register",
           data
         );
         console.log(response.data.msg)

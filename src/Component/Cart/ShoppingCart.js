@@ -5,11 +5,11 @@ import { useEffect } from "react";
 import jwtDecode from "jwt-decode";
 import "./Cart.css";
 import CartProduct from "./CartProduct";
-import { addToCart } from "../../Store/cartSlice";
-import { useDispatch } from "react-redux";
+// import { addToCart } from "../../Store/cartSlice";
+// import { useDispatch } from "react-redux";
 
 function ShoppingCart() {
-  const dispatch=useDispatch()
+  // const dispatch=useDispatch()
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   // const [userCart, setUserCart] = useState(null);
@@ -18,6 +18,7 @@ function ShoppingCart() {
     if (token) {
       try {
         const decodedToken = jwtDecode(token);
+        console.log("decode data from token",decodedToken)
         const username = decodedToken.email;
         const expirationTime = decodedToken.exp;
         const currentTime = Math.floor(Date.now() / 1000);
@@ -52,23 +53,23 @@ function ShoppingCart() {
   // const products = useSelector((state) => state.cartProduct.cartItems);
 
 
-  useEffect(() => {
-    const decodedToken = jwtDecode(token);
-        const email = decodedToken.email;
+  // useEffect(() => {
+  //   const decodedToken = jwtDecode(token);
+  //       const email = decodedToken.email;
         
-          const fetchProducts = async () => {
-            try {
-              const response = await axios.get(`https://ecommerce-server-hpa9.onrender.com/product/cartdetails?email=${email}`);
-              const arr=[...response.data.cart.products]
-              console.log("get response datA",response.data.cart.products,arr);
-              dispatch(addToCart(...arr))
-            } catch (error) {
-              console.error("Error fetching data:", error);
-            }
-          };
+  //         const fetchProducts = async () => {
+  //           try {
+  //             const response = await axios.get(`https://ecommerce-server-hpa9.onrender.com/product/cartdetails?email=${email}`);
+  //             const arr=[...response.data.cart.products]
+  //             console.log("get response datA",response.data.cart.products,arr);
+  //             dispatch(addToCart(...arr))
+  //           } catch (error) {
+  //             console.error("Error fetching data:", error);
+  //           }
+  //         };
       
-          fetchProducts();
-  }, [ dispatch, token]);
+  //         fetchProducts();
+  // }, [ dispatch, token]);
   return (
     <div>
      <CartProduct/>

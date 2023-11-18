@@ -2,9 +2,9 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
-import jwtDecode from "jwt-decode";
+// import jwtDecode from "jwt-decode";
 // import { useEffect } from "react";
-import axios from "axios";
+// import axios from "axios";
 
 import {
   decrementQuantity,
@@ -12,41 +12,41 @@ import {
   removeProduct,
 } from "../../Store/cartSlice";
 const CartProduct = () => {
-  const token = localStorage.getItem("token");
-  const decodedToken = jwtDecode(token);
-  const email = decodedToken.email;
+  // const token = localStorage.getItem("token");
+  // const decodedToken = jwtDecode(token);
+  // const email = decodedToken.email;
   const dispatch = useDispatch();
   const products = useSelector((state) => state.cartProduct.cartItems);
   console.log("cart Item data", products);
  
 
-     const updateProducts = async () => {
-      try {
-        const response = await axios.post(
-          "https://ecommerce-server-hpa9.onrender.com/product/insert_cart_data",
-          { email: email, product: products }
-        );
-        console.log(response);
+    //  const updateProducts = async () => {
+    //   try {
+    //     const response = await axios.post(
+    //       "https://ecommerce-server-hpa9.onrender.com/product/insert_cart_data",
+    //       { email: email, product: products }
+    //     );
+    //     console.log(response);
   
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+    //   } catch (error) {
+    //     console.error("Error fetching data:", error);
+    //   }
+    // };
 
    
 
   const handleDecrement = (id) => {
     dispatch(decrementQuantity({ productId: id }));
-    updateProducts()
+    // updateProducts()
      
   };
   const handleIncrement = (id) => {
     dispatch(incrementQuantity({ productId: id }));
-    updateProducts()
+    // updateProducts()
   };
   const handleRemove = (id) => {
     dispatch(removeProduct({ productId: id }));
-    updateProducts()
+    // updateProducts()
   };
 
   const subtotal = products.reduce(
