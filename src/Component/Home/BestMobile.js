@@ -10,7 +10,10 @@ function BestMobile() {
   const products = product.filter(
     (item) => item.product_category_tree[0] === "mobile"
   );
-  const myArray = products;
+  const unique=new Set([...products])
+  console.log(" set ",unique)
+  const myArray =[...unique];
+  console.log("unique array",myArray)
 
   function getRandomObjects(arr, count) {
     const randomObjects = [];

@@ -5,6 +5,7 @@ import { selectProducts } from "../../Store/productSlice";
 import { addToCart } from '../../Store/cartSlice';
 import "./Dynamic.css";
 import jwtDecode from "jwt-decode";
+import { toast } from 'react-toastify';
 
 function Dynamic() {
   const { id } = useParams();
@@ -23,12 +24,17 @@ function Dynamic() {
       const decodedToken = jwtDecode(token);
       setEmail(decodedToken.email);
     }
+    else{
+      toast.warning("You don't have login")
+    }
   };
 
   useEffect(() => {
     if (email) {
       dispatch(addToCart(product));
+      toast.success("item added in cart")
     }
+   
   }, [email, dispatch, product]);
 
   return product && (

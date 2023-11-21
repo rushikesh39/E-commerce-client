@@ -36,7 +36,7 @@ function getRandomObjects(arr, count) {
 }
 
 // Get an array of 20 different random objects from your array
-const randomObjects = getRandomObjects(myArray, 20);
+const randomObjects = getRandomObjects(myArray, 10);
 
 console.log(randomObjects);
 
