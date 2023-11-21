@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Circles } from "react-loader-spinner";
+import { toast } from 'react-toastify';
 
 function Register() {
   const navi = useNavigate();
@@ -84,11 +85,17 @@ function Register() {
         setIsLoading(true);
         
         const response =await axios.post(
-          "http://localhost:5000https://ecommerce-server-hpa9.onrender.com/register",
+          "https://ecommerce-server-hpa9.onrender.com/register",
           data
         );
         console.log(response.data.msg)
-        alert(response.data.msg)
+        // alert(response.data.msg)
+        if(response.data.msg==="user Register successfully"){
+          toast.success("Register Successfully")
+        }
+        else{
+          toast.warning("User already exist please login")
+        }
         localStorage.setItem("token",response.data.token)
         navi("/")
         
@@ -102,7 +109,7 @@ function Register() {
 
       } catch (error) {
         setIsLoading(false);
-        alert("server connection problem");
+        toast.error("server connection problem");
         console.error("Error during registration:", error);
       }
     }

@@ -4,6 +4,9 @@ import axios from "axios";
 import { Circles } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 
+import { toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+
 const Login = () => {
   const navi=useNavigate()
   console.log(navi)
@@ -52,7 +55,14 @@ const Login = () => {
           Data
         );
         console.log(response);
-        alert(response.data.msg);
+        if(response.data.msg==="Success"){
+          toast.success("Login Successfully")
+        }
+        else{
+          toast.error("Provide correct username and password")
+        }
+        
+        // alert(response.data.msg);
         setIsLoading(false);
         localStorage.setItem("token", response.data.token);
         navi("/");
