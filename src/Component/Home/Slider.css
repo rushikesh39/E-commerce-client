@@ -65,4 +65,12 @@
   height: 100%;
   margin: auto;
 }
+.slide-image{
+  width: 100%;
+}
+@media (max-width: 768px) {
+.slide-image{
+ height: 100px;
+}
+}
 

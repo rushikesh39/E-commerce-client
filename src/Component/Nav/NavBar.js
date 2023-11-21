@@ -2,7 +2,7 @@
 import React, {useState,useEffect} from "react";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
-// import logo from "./logo.png";
+import logo from "./logo.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from "react-redux";
@@ -11,6 +11,7 @@ import axios from "axios";
 import { setProducts } from "../../Store/productSlice";
 import { useSelector} from "react-redux";
 import jwtDecode from "jwt-decode";
+import MobileNav from "./MobileNav";
 
 const Navbar = () => {
   const token = localStorage.getItem("token");
@@ -58,13 +59,20 @@ const logOut=()=>{
 
   return (
     <div>
+      <div className="mobile-nav">
+      <MobileNav/>
+      </div>
+    
       <nav className="navbar">
         <div className="navbar-container">
-          <div className="logo">
-            <Link to="/">{/* <img src={logo} alt="Logo" /> */}</Link>
-          </div>
+          
           <div id="menu">
             <ul>
+              <li>
+              <div className="logo">
+            <Link to="/"><img src={logo} alt="Logo" /></Link>
+          </div>
+              </li>
               <li>
                 <Link to="/">Home</Link>
               </li>

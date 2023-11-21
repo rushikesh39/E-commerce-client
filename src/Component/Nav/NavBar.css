@@ -3,23 +3,24 @@
     background-color:#2980b9;
     color: white;
     
+    
 
   }
   
   .navbar-container {
-    display: flex;
-    height: 70px;
+   display: flex;
+   min-height: 70px;
+   height: auto;
     justify-content: space-between;
+    /* justify-content: center; */
+    flex-wrap:  wrap;
     align-items: center;
     align-content: center;
     padding-left: 10px;
     padding-right: 10px;
     
   }
-  .logo{
-    background-color: #fcfcfd;
-    
-  }
+ 
   .logo img{
     width: 60px;
     margin-top: 5px;
@@ -33,6 +34,7 @@
     font-size: 24px;
   }
   .nav-links{
+    width: 600px;
     display: flex;
     padding-right: 10px;
     position: relative;
@@ -99,14 +101,13 @@
   position: relative;
   width: 150px;
 }
-#menu{
-  display: block;
-}
 
- .menu >ul{
-  /* color: red; */
- }
 #menu ul{
+  display: flex;
+  flex-direction: row; 
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
   list-style: none;
   position: relative;
   margin: 0;
@@ -151,29 +152,51 @@
 #menu ul li:hover > ul{
   display: block;
 }
+.cart-count{
+  margin-left: 10px;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  margin-top: -35px;
+  background-color:#f1c40f;
+
   
-  /* Media query for responsiveness */
-  @media (max-width: 768px) {
-    .navbar-container {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .nav-links a {
-      margin: 10px 0;
-    }
-  }
-  .cart-icon{
+}
+.mobile-nav{
+  display: none;
+}
+
+@media (max-width: 1345px) {
+  #menu{
     display: flex;
+    width: 100%;
+    justify-content: space-evenly;
   }
-  .cart-count{
-    margin-left: -10px;
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    /* color: black; */
-    margin-top: -10px;
-    background-color:#f1c40f;
-    /* border: 1px solid black; */
+  #menu ul{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin: 5px;
+  }
+  .nav-links{
+    margin: 5px;
+    width: 100%;
+    justify-content: end;
+  }
+
+}
+  
+  /* Media query for responsiveness  */
+   @media (max-width: 768px) {
+    .mobile-nav{
+      display: block;
+    }
+    .navbar-container {
+      display: none;
+     
+    }
+  
     
   }
+  
+  
