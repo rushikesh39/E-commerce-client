@@ -16,6 +16,8 @@ import Navbar from './Component/Nav/NavBar';
 import Dynamic from './Component/Dynamic/Dynamic';
 import Footer from './Component/Footer/Footer';
 import Search from './Component/SearchResult/SearchResult';
+import Success from './Component/Cart/Payment/Success';
+import Cancel from './Component/Cart/Payment/Cancel';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
           <Route path="/" element={<Home/>} />
           <Route path='/login' element={<RegisterLogin/>}/>
           <Route path='/cart' element={<ShoppingCart/>}/>
+          <Route path='/success' element={<Success/>}/>
+          <Route path='/cancel' element={<Cancel/>}/>
           <Route path='/mobile' element={<Mobile/>}/>
           <Route path='/mobile/:category' element={<Mobile/>}/>
           <Route path='/:id' element={<Dynamic/>}/>

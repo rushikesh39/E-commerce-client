@@ -5,12 +5,14 @@ import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 // import jwtDecode from "jwt-decode";
 // import { useEffect } from "react";
 // import axios from "axios";
+import {loadStripe} from '@stripe/stripe-js';
 
 import {
   decrementQuantity,
   incrementQuantity,
   removeProduct,
 } from "../../Store/cartSlice";
+// import axios from "axios";
 const CartProduct = () => {
   // const token = localStorage.getItem("token");
   // const decodedToken = jwtDecode(token);
@@ -80,7 +82,39 @@ const CartProduct = () => {
   //   fetchProducts();
   // }, [email,products]);
 
-  const handleCheckout = () => {};
+// payment intigration
+  const handleCheckout = async() => {
+    try{
+      
+    const stripe = await loadStripe('pk_test_51OFa7xSI55uByng4QDyDPgrBXyjuhIwSSoV3jedpIhWA8w4930eNQp6kud38l7o6tNyNXxWeaVoU5IoPlz7rChVg00MkbRUNtp');
+
+    const body={
+      products:products
+    }
+    const headers={
+      "Content-Type":"application/json"
+    }
+    const response=await fetch("https://ecommerce-server-hpa9.onrender.com/api/create-checkout-session",{
+      method:"POST",
+      headers:headers,
+      body:JSON.stringify(body),
+    })
+    const session=await response.json()
+
+    const result=stripe.redirectToCheckout({
+      sessionId:session.id
+    })
+    if(result.error){
+      console.log(result.error)
+    }
+
+    }
+    catch(e){
+      console.log("error",e)
+    }
+
+
+  };
 
   return (
     <div>
