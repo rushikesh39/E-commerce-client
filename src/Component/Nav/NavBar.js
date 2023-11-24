@@ -159,13 +159,15 @@ const Navbar = () => {
                 <button onClick={handleSearch}>Search</button>
               </Link>
             </div>
-
+        
             <Link to="/login">
               {userName ? <span>{userName}</span> : <button>Login</button>}
             </Link>
-            <Link onClick={logOut}>
+
+            {token && <Link onClick={logOut}>
               <button>LogOut</button>
-            </Link>
+            </Link> }
+            
             <Link to="/cart">
               <div className="cart-icon">
                 <FontAwesomeIcon icon={faShoppingCart} size="lg" />{products.length !== 0 && <div className="cart-count">{products.length}</div>}
