@@ -81,7 +81,7 @@ console.log("category product",categoryProduct)
           <div key={index} className="product">
             <Link to={`/${product._id}`}>
             <div className="product-img">
-              <img src={product.image[0]} alt={product.image[0]} />
+              <img src={product.image[0]} alt="product" />
             </div>
             <div className="product-info">
             <p className="product-title "> {product.product_name}</p>
