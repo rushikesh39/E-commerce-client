@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
 import logo from "./logo.png";
@@ -9,31 +9,13 @@ import { setSearchProducts } from "../../Store/searchProduct";
 import axios from "axios";
 import { setProducts } from "../../Store/productSlice";
 import { useSelector } from "react-redux";
-import jwtDecode from "jwt-decode";
 import MobileNav from "./MobileNav";
 import { resetCart } from "../../Store/cartSlice";
+import { clearUser } from "../../Store/userSlice";
 
 const Navbar = () => {
-  const token = localStorage.getItem("token");
-  const decodedToken = token ? jwtDecode(token) : null;
-  const [userName, setUserName] = useState(decodedToken ? decodedToken.userName : null);
-
-  useEffect(() => {
-    const fetchUserName = async () => {
-      try {
-        if (token) {
-          const decodedToken = jwtDecode(token);
-          setUserName(decodedToken.userName);
-        } else {
-          setUserName(null);
-        }
-      } catch (error) {
-        console.error('Error decoding token:', error);
-      }
-    };
-
-    fetchUserName();
-  }, [token]);
+  const userName = useSelector((state) => state.userName.user);
+  console.log("user in nav",userName);
 
   const products = useSelector((state) => state.cartProduct.cartItems);
   console.log("cart count in nav", products.length);
@@ -57,7 +39,7 @@ const Navbar = () => {
   const logOut = () => {
     console.log("function call", localStorage);
     localStorage.removeItem("token");
-    setUserName(null);
+    dispatch(clearUser())
     dispatch(resetCart())
   };
 
@@ -164,7 +146,7 @@ const Navbar = () => {
               {userName ? <span>{userName}</span> : <button>Login</button>}
             </Link>
 
-            {token && <Link onClick={logOut}>
+            { userName && <Link onClick={logOut}>
               <button>LogOut</button>
             </Link> }
             

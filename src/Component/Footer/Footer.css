@@ -31,7 +31,7 @@ footer {
   }
   
   /* Responsive Styles */
-  @media (max-width: 768px) {
+  @media (max-width: 765px) {
     .column {
       flex: 100%;
       margin: 10px 0;

@@ -6,8 +6,11 @@ import { useNavigate } from "react-router-dom";
 
 import { toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
-
+import { useDispatch } from "react-redux";
+import { setUser } from "../Store/userSlice";
+import jwtDecode from "jwt-decode";
 const Login = () => {
+  const dispatch=useDispatch()
   const navi=useNavigate()
   console.log(navi)
   const [isLoading, setIsLoading] = useState(false);
@@ -59,17 +62,20 @@ const Login = () => {
           toast.success("Login Successfully")
         }
         else{
-          toast.error("Provide correct username and password")
+          toast.warn(response.data.msg)
         }
         
         // alert(response.data.msg);
         setIsLoading(false);
         localStorage.setItem("token", response.data.token);
+        const decodedToken=jwtDecode(response.data.token)
+        console.log("user from login",decodedToken.userName)
+        dispatch(setUser(decodedToken.userName))
         navi("/");
 
       } catch (e) {
         setIsLoading(false);
-        alert("server connection problem");
+        // alert("server connection problem");
         console.error("Error during registration:", e);
       }
     }

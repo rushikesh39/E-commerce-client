@@ -66,7 +66,7 @@ function MobileNav() {
       </div>
 
       {displayNav && (
-        <div className="shownav">
+        <div className="shownav" onClick={()=>SetdisplayNav(false)}>
           <NavLink to="/">Home</NavLink>
           <hr />
           <NavLink to="/mobile">Mobile</NavLink>

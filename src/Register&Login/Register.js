@@ -3,8 +3,12 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Circles } from "react-loader-spinner";
 import { toast } from 'react-toastify';
+import { useDispatch } from "react-redux";
+import { setUser } from "../Store/userSlice";
+import jwtDecode from "jwt-decode";
 
 function Register() {
+  const dispatch=useDispatch()
   const navi = useNavigate();
   const [data, setData] = useState({
     userName: "",
@@ -94,10 +98,12 @@ function Register() {
           toast.success("Register Successfully")
         }
         else{
-          toast.warning("User already exist please login")
+          toast.warning(response.data.msg)
         }
         localStorage.setItem("token",response.data.token)
         navi("/")
+        const decodedToken=jwtDecode(response.data.token)
+        dispatch(setUser(decodedToken.userName))
         
         setData({
           name: '',
@@ -109,7 +115,7 @@ function Register() {
 
       } catch (error) {
         setIsLoading(false);
-        toast.error("server connection problem");
+        // toast.error("server connection problem");
         console.error("Error during registration:", error);
       }
     }
